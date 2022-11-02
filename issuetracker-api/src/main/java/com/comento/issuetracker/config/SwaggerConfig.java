@@ -17,7 +17,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
             .useDefaultResponseMessages(false)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("com.comento.issuetracker.controller"))
+            .apis(RequestHandlerSelectors.basePackage("com.comento.issuetracker.web"))
             .paths(PathSelectors.any())
             .build()
             .apiInfo(apiInfo());
@@ -25,8 +25,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Swagger Test")
-            .description("SwaggerConfig")
+            .title("IssueTracker-API")
+            .description("Github IssueTracker API")
             .version("3.0")
             .build();
     }
