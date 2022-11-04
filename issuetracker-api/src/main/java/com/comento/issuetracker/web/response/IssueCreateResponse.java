@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class CreateIssueResponse {
+public class IssueCreateResponse {
 
     private Long issueId;
 

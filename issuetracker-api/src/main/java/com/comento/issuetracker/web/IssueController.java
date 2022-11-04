@@ -1,15 +1,15 @@
 package com.comento.issuetracker.web;
 
+import com.comento.issuetracker.constant.HttpStatusEnum;
 import com.comento.issuetracker.domain.issue.entity.Issue;
 import com.comento.issuetracker.domain.issue.service.IssueService;
-import com.comento.issuetracker.web.request.CreateIssueRequest;
-import com.comento.issuetracker.web.response.CreateIssueResponse;
-import com.comento.issuetracker.web.response.ErrorResponse;
+import com.comento.issuetracker.web.request.IssueCreateRequest;
+import com.comento.issuetracker.web.response.IssueCreateResponse;
+import com.comento.issuetracker.web.response.Response;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +25,19 @@ public class IssueController {
 
     @Operation(summary = "create issue")
     @PostMapping
-    public ResponseEntity<ErrorResponse> createIssue(@RequestBody @Valid CreateIssueRequest request) {
-        Long issueId = issueService.createIssue(new Issue(request));
+    public Response createIssue(@RequestBody @Valid IssueCreateRequest request) {
+        Issue issue = Issue.builder()
+            .issueTitle(request.getIssueTitle())
+            .issueDesc(request.getIssueDesc())
+            .build();
 
-        return ResponseEntity.ok(new ErrorResponse(CreateIssueResponse.builder().issueId(issueId).build()));
+        Long issueId = issueService.createIssue(issue);
+
+        return Response.builder()
+            .code(HttpStatusEnum.OK.getStatusCode())
+            .message(HttpStatusEnum.OK.getStatusMessage())
+            .data(IssueCreateResponse.builder().issueId(issueId).build())
+            .build();
     }
 
 }

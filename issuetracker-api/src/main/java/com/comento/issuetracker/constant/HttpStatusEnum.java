@@ -1,20 +1,18 @@
 package com.comento.issuetracker.constant;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
+@Getter
+@AllArgsConstructor
 public enum HttpStatusEnum {
-    OK(200, "OK"),
-    BAD_REQUEST(400, "BAD_REQUEST"),
-    NOT_FOUND(404, "NOT_FOUND"),
-    INTERNAL_SERER_ERROR(500, "INTERNAL_SERVER_ERROR");
+    OK(HttpStatus.OK.value(), HttpStatus.OK.name()),
+    BAD_REQUEST(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name()),
+    NOT_FOUND(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.name()),
+    INTERNAL_SERER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.name());
 
-    @Getter
-    int statusCode;
-    @Getter
-    String statusMessage;
+    final int statusCode;
+    final String statusMessage;
 
-    HttpStatusEnum(int statusCode, String statusMessage) {
-        this.statusCode = statusCode;
-        this.statusMessage = statusMessage;
-    }
 }

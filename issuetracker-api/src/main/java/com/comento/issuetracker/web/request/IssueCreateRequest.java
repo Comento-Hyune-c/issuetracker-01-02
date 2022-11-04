@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CreateIssueRequest {
+public class IssueCreateRequest {
 
     @NotBlank(message = "제목을 입력해주세요.")
     private String issueTitle;
