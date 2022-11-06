@@ -1,6 +1,5 @@
 package com.comento.issuetracker.web;
 
-import com.comento.issuetracker.constant.HttpStatusEnum;
 import com.comento.issuetracker.domain.issue.entity.Issue;
 import com.comento.issuetracker.domain.issue.service.IssueService;
 import com.comento.issuetracker.web.request.IssueCreateRequest;
@@ -10,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +34,8 @@ public class IssueController {
         Long issueId = issueService.createIssue(issue);
 
         return Response.builder()
-            .code(HttpStatusEnum.OK.getStatusCode())
-            .message(HttpStatusEnum.OK.getStatusMessage())
+            .code(HttpStatus.OK.value())
+            .message(HttpStatus.OK.name())
             .data(IssueCreateResponse.builder().issueId(issueId).build())
             .build();
     }

@@ -1,6 +1,7 @@
 package com.comento.issuetracker.exception;
 
-import com.comento.issuetracker.constant.HttpStatusEnum;
+import static org.springframework.http.HttpStatus.*;
+
 import com.comento.issuetracker.web.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,7 +17,7 @@ public class ExceptionController {
         log.info("MethodArgumentNotValidException => {}", exception.getBindingResult());
 
         return Response.builder()
-            .code(HttpStatusEnum.BAD_REQUEST.getStatusCode())
+            .code(BAD_REQUEST.value())
             .message(exception.getBindingResult().getFieldErrors().get(0).getDefaultMessage())
             .build();
     }
