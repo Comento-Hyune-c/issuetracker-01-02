@@ -1,9 +1,11 @@
 package com.comento.issuetracker.domain.issueHistory.constant;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-public enum IssueType {
+@AllArgsConstructor
+public enum IssueHistoryType {
     ISSUE("ISSUE"),
     ASSIGNEE("ASSIGNEE"),
     LABEL("LABEL"),
@@ -12,9 +14,5 @@ public enum IssueType {
     DEVELOPMENT("DEVELOPMENT");
 
     private String code;
-
-    IssueType(String code) {
-        this.code = code;
-    }
 
 }
