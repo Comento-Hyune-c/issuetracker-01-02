@@ -10,10 +10,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "issue-controller")
 @RestController
@@ -39,5 +38,22 @@ public class IssueController {
             .data(IssueCreateResponse.builder().issueId(issueId).build())
             .build();
     }
+
+    //이슈 open ,close 에 따라 조회
+    @GetMapping
+    public List<Issue> findByUseYnOrdeByRegAt (String useYn) {
+        return issueService.findByUseYnOrdeByRegAt(useYn);
+    }
+
+    //이슈 제목으로 조회  -> 추후 filter 기능 추가(동적쿼리로...)
+    @GetMapping
+    public List<Issue> findByIssueTitle(String issueTitle) {
+        return issueService.findByName(issueTitle);
+    }
+
+    //이슈 수정
+
+    //이슈 삭제
+
 
 }

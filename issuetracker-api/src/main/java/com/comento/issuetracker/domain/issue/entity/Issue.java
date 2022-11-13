@@ -15,6 +15,8 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "issue")
 @Getter
@@ -36,5 +38,9 @@ public class Issue {
     @Column(name = "issue_desc", nullable = false)
     private String issueDesc;
 
+    @Column(nullable = false)
+    private String useYn;
 
+    @Column(nullable = false)
+    private LocalDateTime regAt;
 }
