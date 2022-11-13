@@ -14,7 +14,7 @@ public interface IssueRepository extends JpaRepository<Issue, Long> {
 
 
     // 이슈 제목으로 조회 -> 추후 조건 추가
-    public List<Issue> findByIssueTitle(String issueTitle);
+    public List<Issue> findByIssueTitleLike(String issueTitle);
 
     //이슈 아이디로 조회
     public Issue findByissueId(Long issueId);

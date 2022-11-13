@@ -28,8 +28,8 @@ public class IssueService {
     };
 
     //이슈 제목으로 모두 조회
-    public List<Issue> findByName(String issueTitle) {
-        return issueReposistory.findByIssueTitle(issueTitle);
+    public List<Issue> findByIssueTitleLike(String issueTitle) {
+        return issueReposistory.findByIssueTitleLike(issueTitle);
     }
 
     // 이슈 아이디로 조회

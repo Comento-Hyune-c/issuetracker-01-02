@@ -1,6 +1,7 @@
 package com.comento.issuetracker.web;
 
 import com.comento.issuetracker.domain.issue.entity.Issue;
+import com.comento.issuetracker.domain.issue.repository.IssueUpdateDto;
 import com.comento.issuetracker.domain.issue.service.IssueService;
 import com.comento.issuetracker.web.request.IssueCreateRequest;
 import com.comento.issuetracker.web.response.IssueCreateResponse;
@@ -48,12 +49,18 @@ public class IssueController {
     //이슈 제목으로 조회  -> 추후 filter 기능 추가(동적쿼리로...)
     @GetMapping
     public List<Issue> findByIssueTitle(String issueTitle) {
-        return issueService.findByName(issueTitle);
+        return issueService.findByIssueTitleLike(issueTitle);
     }
 
     //이슈 수정
 
-    //이슈 삭제
+    public void issueUpdate(Long issueId, IssueUpdateDto issueUpdateDto){
+        issueService.issueUpdate(issueId, issueUpdateDto);
+    }
 
+    //이슈 삭제
+    public void deleteByIssueId(Long issueId) {
+        issueService.deleteByissueId(issueId);
+    }
 
 }
