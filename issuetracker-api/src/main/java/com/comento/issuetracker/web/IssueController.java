@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,8 +43,10 @@ public class IssueController {
 
     //이슈 open ,close 에 따라 조회
     @GetMapping
-    public List<Issue> findByUseYnOrdeByRegAt (String useYn) {
-        return issueService.findByUseYnOrdeByRegAt(useYn);
+    public String findByUseYnOrdeByRegAt (String useYn, Model model) {
+        List<Issue> byUseYnOrdeByRegAt = issueService.findByUseYnOrdeByRegAt(useYn);
+        model.addAttribute("byUseYnOrdeByRegAt", byUseYnOrdeByRegAt);
+        return "issue/issueList";
     }
 
     //이슈 제목으로 조회  -> 추후 filter 기능 추가(동적쿼리로...)
@@ -54,8 +57,10 @@ public class IssueController {
 
     //이슈 수정
 
-    public void issueUpdate(Long issueId, IssueUpdateDto issueUpdateDto){
+    @PostMapping
+    public String issueUpdate(Long issueId, IssueUpdateDto issueUpdateDto){
         issueService.issueUpdate(issueId, issueUpdateDto);
+        return "redirect/issues";
     }
 
     //이슈 삭제
