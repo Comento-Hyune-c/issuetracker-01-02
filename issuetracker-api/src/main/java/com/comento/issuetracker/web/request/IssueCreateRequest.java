@@ -15,4 +15,6 @@ public class IssueCreateRequest {
     @NotBlank(message = "설명을 입력해주세요.")
     private String issueDesc;
 
+
+
 }
